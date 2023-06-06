@@ -1,10 +1,10 @@
 export default {
-    install(app) {
+    install:(app) => {
       app.config.globalProperties.$loadImage = (src) => {
         return new Promise((resolve) => {
           const img = document.createElement("img");
           img.src = src;
-          img.addEventListener("load", () => {
+          img.addEventListener("load", (event) => {
             resolve();
           });
         });
