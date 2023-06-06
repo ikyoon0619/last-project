@@ -1,34 +1,32 @@
-
 <script setup>
-defineProps({
-    pharmacy: {
+const props = defineProps({
+  movie: {
     type: Object,
     default: () => ({}),
   },
-  
-})
+});
 </script>
-
 <template>
-    <RouterLink
-      :to="`/pharmacy/${pharmacy.imdbID}`"
-      :style="{ backgroundImage: `url(${pharmacy.Poster})` }"
-      class="pharmacy"
-    >
-      <div class="info">
-        <div class="place-name">
-          {{ pharmacy.placeName }}
-        </div>
-        <div class="address">
-          {{ pharmacy.address }}
-        </div>
+  <RouterLink
+    :to="`/movie/${movie.imdbID}`"
+    :style="{ backgroundImage: `url(${movie.Poster})` }"
+    class="movie"
+  >
+    <img :src="movie.Poster" alt="" width="200" />
+    <div class="info">
+      <div class="year">
+        {{ movie.Year }}
       </div>
-    </RouterLink>
-  </template>
+      <div class="title">
+        {{ movie.Title }}
+      </div>
+    </div>
+  </RouterLink>
+</template>
 
 <style lang="scss" scoped>
-@import "../scss/main.scss";
-.pharmacy {
+@import "../../scss/main.scss";
+.movie {
   $width: 168px;
   width: $width;
   height: calc($width * 3 / 2);
@@ -57,10 +55,10 @@ defineProps({
     left: 0;
     bottom: 0;
     backdrop-filter: blur(10px);
-    .address {
+    .year {
       color: $primary;
     }
-    .place-name {
+    .title {
       color: $white;
       white-space: nowrap;
       overflow: hidden;

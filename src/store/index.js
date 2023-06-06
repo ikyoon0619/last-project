@@ -1,10 +1,10 @@
 import { createStore } from "vuex";
-import pharmacy from "./pharmacy";
 import about from "./about";
+import movie from "./movie"
 
 export default createStore({
   modules: {
-    pharmacy,
     about,
+    movie
   },
 });
