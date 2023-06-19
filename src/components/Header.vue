@@ -8,6 +8,7 @@ const route = useRoute()
 const navigations = ref([
   { name: "Home", href: "/" },
   { name: "Movie", href: "/movie", path:/^\/movie/ },
+  { name: "Board", href: "/board" ,path:/^\/board/  },
   { name: "About", href: "/about" },
 ]);
 
