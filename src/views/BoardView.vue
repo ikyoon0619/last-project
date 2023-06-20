@@ -6,7 +6,7 @@ import store from "../store";
 
 function init(){
   store.dispatch("board/initBoard",{
-    title: text.value,
+    // title: text.value,
   })
 }
 </script>
