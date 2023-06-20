@@ -5,7 +5,7 @@ import ArticleList from "../components/board/ArticleList.vue"
 import store from "../store";
 
 function init(){
-  store.dispatch("board/initBoard",{
+  store.dispatch("board/reqBoard",{
     // title: text.value,
   })
 }

@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
+import store from "../../store";
 import Loader from "../Loader.vue";
 import ArticleItem from "./ArticleItem.vue";
-import store from "../../store";
 
 const articles = computed(()=>{
   return store.state.board.articles;
@@ -11,12 +11,23 @@ const loading = computed(() => {
   return store.state.board.loading;
 });
 
+const page = ref(1)
+function reqArticles(){
+  store.dispatch("board/reqBoard",{
+    page: page.value++
+  })
+}
 </script>
 <template>
   <div class="container">
       <Loader v-if="loading" />
       <div v-if="articles" class="movies">
           <ArticleItem v-for="article in articles" :key="article.id" :article="article"/>
+      </div>
+      <div v-if="true">
+        <span>
+          <button @click="reqArticles">30more</button>
+        </span>
       </div>
   </div>
 </template>
