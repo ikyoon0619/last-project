@@ -1,16 +1,16 @@
   
-  <script setup>
-  import {ref} from "vue";
+<script setup>
+import {ref} from "vue";
 
-  defineProps({
+
+defineProps({
   article: Object
 })
 
-  const title = ref("test")
 
-  </script>
+</script>
 <template>
-    <RouterLink :to="`/article/${article.id}`" class="article">
+    <RouterLink :to="{ name: 'Article', params: { id: article.id }}" class="article">
       <div class="info">
         <div class="number">{{ article.id }}.</div>
         <div class="title">{{ article.title }}</div>
