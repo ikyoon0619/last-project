@@ -1,19 +1,21 @@
 
 <script setup>
-import {ref} from "vue";
+import {ref, onMounted} from "vue";
 import ArticleList from "../components/board/ArticleList.vue"
 import store from "../store";
 
-function init(){
+const isInit = ref(true)
+onMounted(() => {
   store.dispatch("board/reqBoard",{
-    // title: text.value,
+    isInit: isInit.value,
+    size: store.state.board.size
   })
-}
+})
+
 </script>
 <template>
     <div class="article">
-      <h1>This is Board page</h1>
-      <button @click="init">fetch articles</button>
+      
       <ArticleList/>
       
     </div>

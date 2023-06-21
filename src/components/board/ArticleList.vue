@@ -14,7 +14,8 @@ const loading = computed(() => {
 const page = ref(1)
 function reqArticles(){
   store.dispatch("board/reqBoard",{
-    page: page.value++
+    page: page.value++ ,
+    size: store.state.board.size
   })
 }
 </script>

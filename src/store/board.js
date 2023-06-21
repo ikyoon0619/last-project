@@ -7,7 +7,9 @@ export default {
     articles: [],
     loading: false,
     theArticle: {},
-    page: 0
+    page: 0,
+    isInit: false,
+    size: 30
   }),
   getters: {},
   mutations: {
@@ -22,7 +24,8 @@ export default {
       if(state.loading) return;
 
       commit("updateState", {
-        loading: true
+        loading: true,
+        isInit: payload.isInit
       })
 
       try {
@@ -30,15 +33,25 @@ export default {
           ...payload,
         });
         const {content, totalPages} = res.data
-        commit("updateState",{ articles: [...state.articles, ...content], page: payload.page});
-        
+        if(state.isInit){
+          commit("updateState",{ 
+            articles: [...content],
+            page: payload.page
+          });
+        } else{
+          commit("updateState",{ 
+            articles: [...state.articles, ...content],
+            page: payload.page
+          });
+          
+        } 
         
       } catch (error) {
         commit("updateState", {
           articles:[],
         });
       } finally{
-        commit("updateState",{loading: false});
+        commit("updateState",{loading: false, isInit: false});
       }
     },
     
@@ -47,10 +60,9 @@ export default {
 };
 
 function _fetchArticles(payload) {
-  const { searchType, text, page } = payload;
+  const { searchType, text, size, page } = payload;
 
-
-  const url = `http://localhost:8080/api/v1/articles?page=${page}`;
+  const url = `http://localhost:8080/api/v1/articles?size=${size}&page=${page}`;
 
   return new Promise((resolve, reject) => {
     axios
