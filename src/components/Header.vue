@@ -8,8 +8,10 @@ const route = useRoute()
 const navigations = ref([
   { name: "Home", href: "/" },
   { name: "Movie", href: "/movie", path:/^\/movie/ },
-  { name: "Board", href: "/board" ,path:/^\/board/ },
+  { name: "Board", href: "/board" ,path:/^\/article/ },
   { name: "About", href: "/about" },
+  // { name: "Sign In", href: "/registration" },
+
 ]);
 
 function isMatch(path){
@@ -21,7 +23,7 @@ function isMatch(path){
 </script>
 
 <template>
-  <header>
+  <header class="container">
     <Logo />
     <div class="nav nav-pills">
       <div v-for="nav in navigations" :key="nav.name" class="nav-item">
@@ -30,6 +32,7 @@ function isMatch(path){
         </RouterLink>
       </div>
     </div>
+    
   </header>
 </template>
 
@@ -42,5 +45,15 @@ header {
   .logo {
     margin-right: 40px;
   }
+  // .nav-pills{
+  //   width: 100%;
+  //   .nav-item{
+  //     &:last-child{
+  //       flex: none;
+  //       margin-left: auto;
+  //     }
+  //   }
+  // }
 }
+
 </style>
