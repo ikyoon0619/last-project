@@ -28,6 +28,9 @@ function reqArticles(){
       <div v-if="true">
         <span>
           <button @click="reqArticles">30more</button>
+          <RouterLink :to="{name: 'Post'}">
+            글쓰기
+          </RouterLink>
         </span>
       </div>
   </div>

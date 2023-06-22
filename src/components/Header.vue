@@ -8,7 +8,7 @@ const route = useRoute()
 const navigations = ref([
   { name: "Home", href: "/" },
   { name: "Movie", href: "/movie", path:/^\/movie/ },
-  { name: "Board", href: "/board" ,path:/^\/article/ },
+  { name: "News", href: "/news" ,path:/^\/article/ },
   { name: "About", href: "/about" },
   // { name: "Sign In", href: "/registration" },
 

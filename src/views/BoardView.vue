@@ -1,8 +1,9 @@
 
 <script setup>
 import {ref, onMounted} from "vue";
-import ArticleList from "../components/board/ArticleList.vue"
+import { RouterLink, RouterView } from 'vue-router'
 import store from "../store";
+
 
 const isInit = ref(true)
 onMounted(() => {
@@ -14,10 +15,8 @@ onMounted(() => {
 
 </script>
 <template>
-    <div class="article">
-      
-      <ArticleList/>
-      
+    <div class="news">
+      <RouterView />
     </div>
 </template>
   

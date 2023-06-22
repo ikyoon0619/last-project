@@ -3,6 +3,9 @@ import HomeView from '../views/HomeView.vue'
 import MovieView from "../views/MovieView.vue"
 import BoardView from "../views/BoardView.vue"
 import ArticleView from "../views/ArticleView.vue"
+import PostView from "../views/PostView.vue"
+import ArticleList from '../components/board/ArticleList.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,18 +23,29 @@ const router = createRouter({
 
     },
     {
-      path: '/board',
-      name: 'Board',
+      path: '/news',
+      name: 'News',
       component: BoardView,
+      children: [
+        {
+          path: '',
+          name: 'ArticleList',
+          component: ArticleList,
+        },
+        {
+          path: 'article/:id',
+          name: 'Article',
+          component: ArticleView,
+        },
+        {
+          path: 'newpost',
+          name: 'Post',
+          component: PostView,
+        },
+        
+      ],
       
-    },
-    {
-      path: '/article/:id',
-      name: 'Article',
-      component: ArticleView,
-      
-    },
-    
+    }, 
     {
       path: '/about',
       name: 'about',
