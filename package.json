@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@voidsolutions/vue-dateformat": "^0.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "vue": "^3.3.2",
