@@ -14,7 +14,7 @@ const userAccountDto = ref({
   memo: "This is text for memo",
 })
 const form = reactive({
-  title, content, tags, 
+  title, content, tags, userAccountDto
 })
 
 async function submit(){
