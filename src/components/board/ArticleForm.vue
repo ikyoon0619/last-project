@@ -1,61 +1,65 @@
   
 <script setup>
-import {ref} from "vue";
+import axios from "axios";
+import { reactive, ref} from "vue";
 
+const title = ref('')
+const content = ref('')
+const tags =  ref([])
+const userAccountDto = ref({
+  userId: "ikyoon2",
+  userPassword: "1234",
+  email: "ikyoon@gk.com",
+  nickname: "faust",
+  memo: "This is text for memo",
+})
+const form = reactive({
+  title, content, tags, 
+})
+
+async function submit(){
+  try {
+    const res = await axios.post('http://localhost:8080/api/v1/article', form)
+    const data = res.data;
+    
+  } catch (error) {
+    
+  }
+
+  console.log("test", data)
+}
 
 </script>
 <template>
-    <form
-  id="app"
-  @submit="checkForm"
-  action="https://vuejs.org/"
-  method="post"
->
-
-  
-
   <p>
-    <label for="name">Name</label>
+    <label for="title">Title</label>
     <input
-      id="name"
-      v-model="name"
+      id="title"
       type="text"
-      name="name"
+      name="title"
+      :value="form.title"
     >
   </p>
 
   <p>
-    <label for="age">Age</label>
+   <span>Content</span>
+   <p style="white-space: pre-line;">{{form.content}}</p>
+   <textarea :value="form.content"  placeholder="add content"></textarea>
+  </p>
+
+  <p>
+    <label for="tag">Tag</label>
     <input
-      id="age"
-      v-model="age"
-      type="number"
-      name="age"
-      min="0"
+      id="tag"
+      type="text"
+      name="tag"
+      :value="form.tags"
     >
   </p>
 
-  <p>
-    <label for="movie">Favorite Movie</label>
-    <select
-      id="movie"
-      v-model="movie"
-      name="movie"
-    >
-      <option>Star Wars</option>
-      <option>Vanilla Sky</option>
-      <option>Atomic Blonde</option>
-    </select>
-  </p>
+  <button @click="submit">Submit</button>
 
-  <p>
-    <input
-      type="submit"
-      value="Submit"
-    >
-  </p>
 
-</form>
 </template>
   
 <style lang="scss" scoped>
