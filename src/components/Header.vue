@@ -16,7 +16,7 @@ const navigations = ref([
 
 function isMatch(path){
   if(!path) return false;
-  console.log(route.fullPath)
+
   return path.test(route.fullPath)
 }
 
