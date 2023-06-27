@@ -37,16 +37,17 @@ async function submit(){
       id="title"
       type="text"
       name="title"
-      :value="form.title"
+      :value= "form.title"
+      @input= "form.title = $event.target.value"
     >
   </p>
 
   <p>
    <span>Content</span>
    <p style="white-space: pre-line;">{{form.content}}</p>
-   <textarea :value="form.content"  placeholder="add content"></textarea>
+   <textarea :value="form.content" @input= "form.content = $event.target.value"  placeholder="add content"></textarea>
   </p>
-
+ 
   <p>
     <label for="tag">Tag</label>
     <input
@@ -54,8 +55,13 @@ async function submit(){
       type="text"
       name="tag"
       :value="form.tags"
+      @input="form.tags = $event.target.value"
     >
   </p>
+
+  <div>
+    tags : {{ form.tags }}
+  </div>
 
   <button @click="submit">Submit</button>
 
