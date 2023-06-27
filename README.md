@@ -28,7 +28,7 @@ npm run dev
 npm run build
 ```
 
-## 💻 Project period 기간
+## 💻 Project 기간
 
 2023.05.25 ~ 2023.07.20
 
