@@ -24,7 +24,6 @@ const router = createRouter({
     },
     {
       path: '/news',
-      name: 'News',
       component: BoardView,
       children: [
         {
