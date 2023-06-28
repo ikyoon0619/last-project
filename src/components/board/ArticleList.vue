@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 import store from "../../store";
 import Loader from "../Loader.vue";
 import ArticleItem from "./ArticleItem.vue";
+import router from "../../router/index";
 
 const articles = computed(()=>{
   return store.state.board.articles;
@@ -18,6 +19,10 @@ function reqArticles(){
     size: store.state.board.size
   })
 }
+
+function createArticle (){
+  router.push({name:'Post'}) 
+}
 </script>
 <template>
   <div class="container">
@@ -28,9 +33,7 @@ function reqArticles(){
       <div v-if="true">
         <span>
           <button @click="reqArticles">30more</button>
-          <RouterLink :to="{name: 'Post'}">
-            글쓰기
-          </RouterLink>
+          <button @click="createArticle">글쓰기</button>
         </span>
       </div>
   </div>
