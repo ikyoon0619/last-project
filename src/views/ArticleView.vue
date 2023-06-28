@@ -1,7 +1,9 @@
 
 <script >
 import { mapState } from "vuex";
+import axios from "axios";
 import store from "../store"
+import router from "../router/index";
 import Loader from "../components/Loader.vue";
 
 export default {
@@ -17,6 +19,19 @@ export default {
       id: this.$route.params.id
     })
   },
+  methods:{
+
+    async deleteItem(id){
+      try {
+        await axios.delete(`http://localhost:8080/api/v1/article/${id}`)
+        store.dispatch("board/reqBoard",{isInit:true, size:30})
+        router.push({name:"ArticleList"})
+      } catch (error) {
+        
+      } 
+    }
+  }
+
 }
 
 
@@ -50,7 +65,9 @@ export default {
       </div>
     </div>
   </div>
-  
+  <div class="btn">
+      <button @click="deleteItem(theArticle.id)">delete</button>
+  </div>
 </template>
   
 <style lang="scss" scoped>
