@@ -1,32 +1,39 @@
-  
 <script setup>
 import axios from "axios";
 import { reactive, ref} from "vue";
+import router from "../../router/index";
+import store from "../../store"
 
 const title = ref('')
 const content = ref('')
-const tags =  ref([])
+const hashtag =  ref([])
 const userAccountDto = ref({
-  userId: "ikyoon2",
+  userId: "ikyoon",
   userPassword: "1234",
   email: "ikyoon@gk.com",
   nickname: "faust",
   memo: "This is text for memo",
 })
 const form = reactive({
-  title, content, tags, userAccountDto
+  title, content, hashtag, userAccountDto
 })
 
 async function submit(){
   try {
     const res = await axios.post('http://localhost:8080/api/v1/article', form)
-    const data = res.data;
+    const status = res.status
+    const data = res.data
+    if(status === 201){ 
+      router.push({name:"Article" ,params: { id: data.id }})
+      store.dispatch("board/reqBoard",{isInit:true, size:30})
+    }
+
     
   } catch (error) {
-    
+    console.log(error.message)
   }
 
-  console.log("test", data)
+
 }
 
 </script>
@@ -44,7 +51,6 @@ async function submit(){
 
   <p>
    <span>Content</span>
-   <p style="white-space: pre-line;">{{form.content}}</p>
    <textarea :value="form.content" @input= "form.content = $event.target.value"  placeholder="add content"></textarea>
   </p>
  
@@ -54,14 +60,10 @@ async function submit(){
       id="tag"
       type="text"
       name="tag"
-      :value="form.tags"
-      @input="form.tags = $event.target.value"
+      :value="form.hashtag"
+      @input="form.hashtag = $event.target.value"
     >
   </p>
-
-  <div>
-    tags : {{ form.tags }}
-  </div>
 
   <button @click="submit">Submit</button>
 
