@@ -1,32 +1,34 @@
   
 <script setup>
 import {ref} from "vue";
+import axios from "axios";
+import router from "../../router/index";
 
 
 defineProps({
   article: Object
 })
 
-
 </script>
 <template>
     <RouterLink :to="{ name: 'Article', params: { id: article.id }}" class="article">
-      <div class="info">
-        <div class="number">{{ article.id }}.</div>
+        <div class="number">{{ article.id }}</div>
         <div class="title">{{ article.title }}</div>
-      </div>
     </RouterLink>
 </template>
   
 <style lang="scss" scoped>
 @import "../../scss/main.scss";
-.info{
+.article{
   display: flex;
   border: 1px solid black;
   .number {
     margin-right: 20px;
   }
   
-}
+  }
+
+
+
 
 </style>
