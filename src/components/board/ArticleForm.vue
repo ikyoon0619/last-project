@@ -4,19 +4,20 @@ import { reactive, ref} from "vue";
 import router from "../../router/index";
 import store from "../../store"
 
-const title = ref('')
-const content = ref('')
-const hashtag =  ref([])
-const userAccountDto = ref({
-  userId: "ikyoon",
-  userPassword: "1234",
-  email: "ikyoon@gk.com",
-  nickname: "faust",
-  memo: "This is text for memo",
-})
 const form = reactive({
-  title, content, hashtag, userAccountDto
+  title: ref(''),
+  content: ref(''),
+  hasthtag: ref([]),
+  userAccountDto : ref({
+    userId: "ikyoon",
+    userPassword: "1234",
+    email: "ikyoon@gk.com",
+    nickname: "faust",
+    memo: "This is text for memo",
+  })
 })
+
+const {title, content, hashtag, userAccountDto} = form;
 
 async function submit(){
   try {
