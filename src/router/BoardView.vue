@@ -10,20 +10,19 @@ export default{
     return {
       isInit: true,
       page: 1,
-      totalPages: store.state.board.totalPages
+      last: true
     };
   },
-  computed:{
-    isLastPage(){
-      return page === this.totalPages ? true : false;
-    }
-  },
-
-  created() {
+  mounted() {
     this.$store.dispatch("board/initBoard",{
     isInit: this.isInit,
     size: store.state.board.size
     })
+  },
+  computed:{
+    last(){
+      return store.state.board.last
+    }
   },
   methods:{
     reqArticles(){
@@ -31,7 +30,7 @@ export default{
         page: this.page++,
         size: store.state.board.size
         })
-        console.log("totalPage", this.totalPages)
+        console.log("last", this.last)
       }
     }
 }
@@ -39,7 +38,7 @@ export default{
 </script>
 <template>
   <h1>Board View - Parent</h1>
-  <span v-if="page <= totalPages">
+  <span v-if="!last">
     <button @click="reqArticles">30more</button>
   </span>
   <RouterView />

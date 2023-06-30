@@ -10,7 +10,7 @@ export default {
     page: 0,
     isInit: false,
     size: 30,
-    totalPages: 0,
+    last: true,
   }),
   getters: {},
   mutations: {
@@ -24,10 +24,10 @@ export default {
     async initBoard({state,commit}, payload){
       try {
         const res = await _fetchArticles({...payload})
-        const {content, totalPages} = res.data
+        const {content, last} = res.data
         commit("updateState",{
           articles:[...content],
-          totalPages
+          last: this.last
         })
       } catch (error) {
         
@@ -46,27 +46,20 @@ export default {
         const res = await _fetchArticles({
           ...payload,
         });
-        const {content, totalPages} = res.data
-        if(state.isInit){
-          commit("updateState",{ 
-            articles: [...content],
-            page: payload.page
-          });
-        } else{
+          const {content, last} = res.data
           commit("updateState",{ 
             articles: [...state.articles, ...content],
-            page: payload.page
+            page: payload.page,
+            last: last
           });
-          
-        } 
-        
-      } catch (error) {
-        commit("updateState", {
-          articles:[],
-        });
-      } finally{
-        commit("updateState",{loading: false, isInit: false});
-      }
+            
+        } catch (error) {
+          commit("updateState", {
+            articles:[],
+          });
+        } finally{
+          commit("updateState",{loading: false, isInit: false});
+        }
     },
     async reqArticleWithId({state, commit}, payload){
       try {
