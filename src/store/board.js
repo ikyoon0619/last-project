@@ -9,7 +9,8 @@ export default {
     theArticle: {},
     page: 0,
     isInit: false,
-    size: 30
+    size: 30,
+    totalPages: 0,
   }),
   getters: {},
   mutations: {
@@ -20,12 +21,25 @@ export default {
     },
   },
   actions: {
+    async initBoard({state,commit}, payload){
+      try {
+        const res = await _fetchArticles({...payload})
+        const {content, totalPages} = res.data
+        commit("updateState",{
+          articles:[...content],
+          totalPages
+        })
+      } catch (error) {
+        
+      }
+    },
     async reqBoard({state, commit}, payload){
       if(state.loading) return;
 
       commit("updateState", {
         loading: true,
-        isInit: payload.isInit
+        isInit: payload.isInit,
+        page: payload.page
       })
 
       try {

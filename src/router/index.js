@@ -4,6 +4,7 @@ import MovieView from "../router/MovieView.vue"
 import BoardView from "../router/BoardView.vue"
 import ArticleView from "../views/ArticleView.vue"
 import PostView from "../views/PostView.vue"
+import ArticleList from '../components/board/ArticleList.vue'
 
 
 
@@ -21,15 +22,23 @@ const router = createRouter({
       component: MovieView
     },
     {
-      path: '/articles',
-      name: 'articles',
-      component: BoardView
+      path: '/news',
+      name: 'news',
+      component: BoardView,
+      children:[
+        {
+          path: '',
+          name: 'articles',
+          component: ArticleList
+        },
+        {
+          path: '/article/:id',
+          name: 'article',
+          component: ArticleView
+        },
+      ]
     },
-    {
-      path: '/article/:id',
-      name: 'article',
-      component: ArticleView
-    },
+   
     {
       path: '/about',
       name: 'about',

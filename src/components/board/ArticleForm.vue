@@ -5,13 +5,6 @@ import { mapState } from "vuex";
 import router from "../../router/index";
 import store from "../../store"
 
-// computed: mapState({
-//   theArticle: board => board.theArticle
-// })
-
-computed: mapState([
-  'board', ['theArticle']
-])
 defineProps({
   article: Object,
   default:(()=>{})

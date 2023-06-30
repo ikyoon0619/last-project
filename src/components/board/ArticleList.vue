@@ -1,9 +1,10 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import store from "../../store";
 import Loader from "../Loader.vue";
 import ArticleItem from "./ArticleItem.vue";
 import router from "../../router/index";
+import ArticleView from "../../views/ArticleView.vue";
 
 const articles = computed(()=>{
   return store.state.board.articles;
@@ -11,18 +12,17 @@ const articles = computed(()=>{
 const loading = computed(() => {
   return store.state.board.loading;
 });
+const page = computed(() => {
+  return store.state.board.page;
+});
 
-const page = ref(1)
-function reqArticles(){
-  store.dispatch("board/reqBoard",{
-    page: page.value++ ,
-    size: store.state.board.size
-  })
-}
+// onMounted(()=>{
+//   store.dispatch("board/reqBoard",{
+//     isInit: true,
+//     size: store.state.board.size
+//   })
+// })
 
-function createArticle (){
-  router.push({name:'create'}) 
-}
 
 </script>
 <template>
@@ -31,13 +31,8 @@ function createArticle (){
       <div v-if="articles" class="movies">
           <ArticleItem v-for="article in articles" :key="article.id" :article="article"/>
       </div>
-      <div v-if="true">
-        <span>
-          <button @click="reqArticles">30more</button>
-          <button @click="createArticle">글쓰기</button>
-        </span>
-      </div>
   </div>
+  
 </template>
 
 <style lang="scss" scoped>
