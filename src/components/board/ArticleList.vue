@@ -21,8 +21,9 @@ function reqArticles(){
 }
 
 function createArticle (){
-  router.push({name:'Post'}) 
+  router.push({name:'create'}) 
 }
+
 </script>
 <template>
   <div class="container">

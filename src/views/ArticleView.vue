@@ -29,6 +29,9 @@ export default {
       } catch (error) {
         
       } 
+    },
+    update(){
+      router.push({name:'update'})
     }
   }
 
@@ -65,9 +68,9 @@ export default {
       </div>
     </div>
   </div>
-  <div class="btn">
-      <button @click="deleteItem(theArticle.id)">delete</button>
-  </div>
+  
+  <span class="btn" @click="deleteItem(theArticle.id)">delete</span>
+  <span class="btn" @click="update">Update</span>
 </template>
   
 <style lang="scss" scoped>
@@ -105,6 +108,17 @@ export default {
     font-family: "Oswald", sans-serif;
     font-size: 20px;
   }
+}
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: $primary;
+}
+.btn:hover{
+  background-color: $primary;
 }
 @media (min-width: 1024px) {
   
