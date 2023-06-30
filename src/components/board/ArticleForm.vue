@@ -1,9 +1,21 @@
 <script setup>
 import axios from "axios";
 import { reactive, ref} from "vue";
+import { mapState } from "vuex";
 import router from "../../router/index";
 import store from "../../store"
 
+// computed: mapState({
+//   theArticle: board => board.theArticle
+// })
+
+computed: mapState([
+  'board', ['theArticle']
+])
+defineProps({
+  article: Object,
+  default:(()=>{})
+})
 const form = reactive({
   title: ref(''),
   content: ref(''),
@@ -45,7 +57,7 @@ async function submit(){
       id="title"
       type="text"
       name="title"
-      :value= "form.title"
+      :value= "form.title || article.title"
       @input= "form.title = $event.target.value"
     >
   </p>
@@ -68,7 +80,7 @@ async function submit(){
 
   <button @click="submit">Submit</button>
 
-
+  {{ theArticle }}
 </template>
   
 <style lang="scss" scoped>

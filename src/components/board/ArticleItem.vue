@@ -11,7 +11,7 @@ defineProps({
 
 </script>
 <template>
-    <RouterLink :to="{ name: 'Article', params: { id: article.id }}" class="article">
+    <RouterLink :to="{ name: 'article', params: { id: article.id }}" class="article">
         <div class="number">{{ article.id }}</div>
         <div class="title">{{ article.title }}</div>
     </RouterLink>
