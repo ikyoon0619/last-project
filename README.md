@@ -34,19 +34,29 @@ npm run build
 
 ## 적용 기술(스택)
 
-Vue.js, Vuex
+- Vue3
+- Vuex
+- Vue-Router
+- Vite
+- OBDb API
+- Axios
+- Lodash
+- Tests
+    - Vitest
+    - Vue Test Utils
 
 ## 구현 기능
 
-- 검색한 영화의 데이터를 omdb api를 통해서 가지고 온다.
-- 회원 가입
-- 회원은 게시판 사용
-
+- 검색한 영화를 omdb api를 통해서 데이터를 불러오고 사용자에게 보여준다.
+- 회원 가입 기능
+- 게시판 기능
+- 인증 기능
 
 #### 직접 구현한 기능
 
 - 게시판 기능
 - 회원 가입 기능
+- 인증 기능
 
 ## Reference
 
