@@ -10,7 +10,7 @@ const navigations = ref([
   { name: "Movie", href: "/movie", path:/^\/movie/ },
   { name: "News", href: "/news" ,path:/^\/article/ },
   { name: "About", href: "/about" },
-  // { name: "Sign In", href: "/registration" },
+  { name: "Sign In", href: "/registration" },
 
 ]);
 

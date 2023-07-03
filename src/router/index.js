@@ -3,8 +3,9 @@ import HomeView from '../router/HomeView.vue'
 import MovieView from "../router/MovieView.vue"
 import BoardView from "../router/BoardView.vue"
 import ArticleView from "../views/ArticleView.vue"
-import PostView from "../views/PostView.vue"
 import ArticleList from '../components/board/ArticleList.vue'
+import LoginForm from "../components/user/LoginForm.vue"
+
 
 
 
@@ -38,7 +39,6 @@ const router = createRouter({
         },
       ]
     },
-   
     {
       path: '/about',
       name: 'about',
@@ -46,6 +46,16 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../router/AboutView.vue')
+    },
+    {
+      path: '/registration',
+      name: 'registration',
+      component: () => import('../router/LoginView.vue'),
+      children:[{
+        path: '',
+        name: 'login',
+        component: LoginForm
+      }]
     }
   ]
 })
