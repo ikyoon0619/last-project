@@ -27,8 +27,9 @@ export default {
         const {content, last} = res.data
         commit("updateState",{
           articles:[...content],
-          last: state.last
+          last: last
         })
+        console.log("last", state.last)
       } catch (error) {
         
       }
