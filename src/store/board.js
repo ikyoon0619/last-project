@@ -27,7 +27,7 @@ export default {
         const {content, last} = res.data
         commit("updateState",{
           articles:[...content],
-          last: this.last
+          last: state.last
         })
       } catch (error) {
         
@@ -84,8 +84,8 @@ function _fetchArticles(payload) {
   const { searchType, text, size, page, id } = payload;
 
   const url = id 
-  ? `http://localhost:8080/api/v1/article/${id}` 
-  : `http://localhost:8080/api/v1/articles?size=${size}&page=${page}`;
+  ? `http://localhost:8080/api/article/${id}` 
+  : `http://localhost:8080/api/articles?size=${size}&page=${page}`;
 
   return new Promise((resolve, reject) => {
     axios
