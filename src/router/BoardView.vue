@@ -2,7 +2,6 @@
 <script >
 import {  RouterView } from 'vue-router'
 import store from "../store";
-import ArticleList from "../components/board/ArticleList.vue";
 
 export default{
 
@@ -10,7 +9,6 @@ export default{
     return {
       isInit: true,
       page: 1,
-      last: true
     };
   },
   mounted() {
@@ -20,7 +18,7 @@ export default{
     })
   },
   computed:{
-    last(){
+    isLast(){
       return store.state.board.last
     }
   },
@@ -30,7 +28,7 @@ export default{
         page: this.page++,
         size: store.state.board.size
         })
-        console.log("last", this.last)
+
       }
     }
 }
@@ -38,7 +36,7 @@ export default{
 </script>
 <template>
   <h1>Board View - Parent</h1>
-  <span v-if="!last">
+  <span v-if="!isLast">
     <button @click="reqArticles">30more</button>
   </span>
   <RouterView />

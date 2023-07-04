@@ -29,7 +29,7 @@ export default {
           articles:[...content],
           last: last
         })
-        console.log("last", state.last)
+
       } catch (error) {
         
       }
@@ -48,12 +48,13 @@ export default {
           ...payload,
         });
           const {content, last} = res.data
+          console.log("last", last)
           commit("updateState",{ 
             articles: [...state.articles, ...content],
             page: payload.page,
             last: last
           });
-            
+
         } catch (error) {
           commit("updateState", {
             articles:[],
