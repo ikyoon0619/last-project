@@ -4,7 +4,7 @@ import {ref, reactive} from "vue";
 import router from "../../router";
 
  const event = reactive({
-  usernameOrEmail:'',
+  username:'',
   password:''
  })
 
@@ -30,7 +30,7 @@ import router from "../../router";
       id="id"
       type="text"
       name="id"
-      v-model="event.usernameOrEmail"
+      v-model="event.username"
       placeholder="ID" 
     >
   </div>

@@ -5,7 +5,7 @@ import BoardView from "../router/BoardView.vue"
 import ArticleView from "../views/ArticleView.vue"
 import ArticleList from '../components/board/ArticleList.vue'
 import LoginForm from "../components/user/LoginForm.vue"
-
+import Profile from "../components/user/Profile.vue"
 
 
 
@@ -48,14 +48,15 @@ const router = createRouter({
       component: () => import('../router/AboutView.vue')
     },
     {
-      path: '/registration',
-      name: 'registration',
+      path: '/login',
+      name: 'login',
       component: () => import('../router/LoginView.vue'),
-      children:[{
-        path: '',
-        name: 'login',
-        component: LoginForm
-      }]
+      
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile
     }
   ]
 })
